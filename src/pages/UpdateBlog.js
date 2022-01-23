@@ -20,10 +20,16 @@ const UpdateBlog = () => {
   const { id } = useParams();
 
   const currentBlog = getOneBlog(id);
-  const res = currentBlog
-    ? currentBlog[0]
-    : { title: "", content: "", image: "" };
-  console.log(currentBlog);
+  
+   
+  const res = useMemo(() => {
+    return currentBlog ? currentBlog[0] : { title: "", content: "", image: "" };
+  }, [currentBlog]);
+  
+  //const res = currentBlog
+  //  ? currentBlog[0]
+  //  : { title: "", content: "", image: "" };
+  
   const [updatedBlog, setUpdatedBlog] = useState(res);
 
   //!useeffect every time we refresh page we render, we need to get details
